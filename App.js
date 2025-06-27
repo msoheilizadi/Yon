@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import SliderTop from './componenets/SliderTop';
 import * as Font from 'expo-font';
+import LoginPage from './componenets/LoginPage';
 
 export default function App() {
   const [fontsLoaded, setFontsLoaded] = useState(false);
@@ -17,7 +18,8 @@ export default function App() {
   return (
     <>
       <StatusBar style='light'/>
-      <SliderTop />
+      {/* <SliderTop /> */}
+      <LoginPage />
     </>
   );
 }

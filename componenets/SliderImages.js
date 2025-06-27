@@ -100,10 +100,10 @@ import { View, StyleSheet, Animated } from 'react-native';
 const FadeImageSlider = () => {
   // List of image sources (replace with your own images or URIs)
   const images = [
-  require('../assets/images/img1.jpg'),
-  require('../assets/images/img2.jpg'),
-  require('../assets/images/img3.jpg'),
-  require('../assets/images/img4.jpg'),
+    require('../assets/images/img1.jpg'),
+    require('../assets/images/img2.jpg'),
+    require('../assets/images/img3.jpg'),
+    require('../assets/images/img4.jpg'),
   ];
 
   // State to keep track of current image index
