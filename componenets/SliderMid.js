@@ -1,14 +1,16 @@
 import { StyleSheet, Text, View, Image } from "react-native";
+import FadeImageSlider from "./SliderImages";
+import SingleMusicPlayer from "./MusicPlayer";
 
 
 function SliderMid() {
     return (
         <View style={styles.Container}>
-            <Image style={styles.ImageStyle} source={require('../assets/images/img1.jpg')} />
+            <View style={{flex: 1.6}}><FadeImageSlider imageStyle={styles.ImageStyle}/></View>
             <View style={styles.ViewContainer}>
                 <Text style={styles.TextTopStyle}>آرامشی از جنس طبیعت</Text>
                 <Text style={styles.TextBottomStyle}>کوهستان</Text>
-                {/* <MusicPlayerWidget /> */}
+                <SingleMusicPlayer />
             </View>
         </View>
     )
@@ -30,7 +32,6 @@ const styles = StyleSheet.create({
     },
     ImageStyle: {
         borderRadius: 36,
-        flex: 1.6,
         height: '100%',
         resizeMode: 'cover',
     },

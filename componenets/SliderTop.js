@@ -1,7 +1,6 @@
 import react, { useState } from "react";
-import { Text, View,Modal, Pressable ,Image, ImageBackground, StyleSheet, Animated, Dimensions } from "react-native";
+import { Text, View,Modal, Pressable ,Image, StyleSheet } from "react-native";
 import SliderMid from "./SliderMid";
-import { StatusBar } from "expo-status-bar";
 import FadeImageSlider from "./SliderImages";
 
 function SliderTop() {
@@ -16,14 +15,9 @@ function SliderTop() {
         setModalVisibility(false)
     }
 
-
-
     return (
         <>
-            {/* <ImageBackground style={styles.TopContainer} source={require('../assets/images/img1.jpg')}>
-                <Text style={styles.TextTop}>Logo</Text>
-            </ImageBackground> */}
-              <View style={[{flex: 1}, styles.TopContainer]}>
+            <View style={[{flex: 1}, styles.TopContainer]}>
                 <FadeImageSlider />
             </View>
             <View style={styles.BottomContainer}>
@@ -99,12 +93,6 @@ function SliderTop() {
 export default SliderTop;
 
 const styles = StyleSheet.create({
-  background: {
-    width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height * 0.5, // or whatever height you need
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
     TopContainer: {
         flex: 0.5,
         justifyContent: "center",

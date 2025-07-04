@@ -1,14 +1,14 @@
 import react , {useState} from "react";
 import {View, ImageBackground,StyleSheet,Text, TextInput, Pressable, Alert} from "react-native";
 
-function LoginPage() {
+function LoginPage({navigation}) {
     const LoginImage = require('../assets/images/bimg.jpg');
     const [email , setEmail] = useState('');
     const [password , setPassword] = useState(''); 
 
     function hanldeLogin() {
         if (email === "admin" && password === "admin") {
-            Alert.alert("ایمیل و پسوورد وارد شده درست میباشد");
+            navigation.navigate("HomePage");
         } else {
             Alert.alert("خطا! ایمیل یا پسوورد مربوطه اشتباه است");
         }

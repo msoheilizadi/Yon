@@ -1,25 +1,33 @@
 import { StatusBar } from 'expo-status-bar';
-import { useState, useEffect } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet} from 'react-native';
 import SliderTop from './componenets/SliderTop';
-import * as Font from 'expo-font';
+import { useFonts } from 'expo-font';
 import LoginPage from './componenets/LoginPage';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import AppLoading from 'expo-app-loading';
 
 export default function App() {
-  const [fontsLoaded, setFontsLoaded] = useState(false);
+  const stack = createNativeStackNavigator();
 
-  useEffect(() => {
-    Font.loadAsync({
-      'YekanBakh-Bold': require('./assets/fonts/YekanBakh-Bold.ttf'),
-      'YekanBakh-Light': require('./assets/fonts/YekanBakh-Light.ttf'),
-    }).then(() => setFontsLoaded(true));
-  }, [])
+  const [fontsLoaded] = useFonts({
+    'YekanBakh-Bold': require('./assets/fonts/YekanBakh-Bold.ttf'),
+    'YekanBakh-Light': require('./assets/fonts/YekanBakh-Light.ttf'),
+  });
+
+  if (!fontsLoaded) {
+    return <AppLoading />
+  }
 
   return (
     <>
       <StatusBar style='light'/>
-      {/* <SliderTop /> */}
-      <LoginPage />
+      <NavigationContainer>
+        <stack.Navigator screenOptions={{headerShown: false}}>
+          <stack.Screen name = "LoginPage" component={LoginPage}/>
+          <stack.Screen name = "HomePage" component={SliderTop}/>
+        </stack.Navigator>
+      </NavigationContainer>
     </>
   );
 }
