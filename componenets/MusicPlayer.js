@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { View, Text, Button, StyleSheet, Pressable } from 'react-native';
 import Slider from '@react-native-assets/slider';
 import { Audio } from 'expo-av';
+import { Ionicons } from '@expo/vector-icons';
 
 export default function SingleMusicPlayer() {
   const sound = useRef(null);
@@ -56,29 +57,39 @@ export default function SingleMusicPlayer() {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={styles.playerCard}>
+
+      <View style={styles.controlsRow}>
+        <Ionicons name="play-skip-back" size={18} color="#fff" />
+        
+        <Pressable onPress={togglePlayPause} style={styles.playButton}>
+          <Ionicons
+            name={isPlaying ? 'pause' : 'play'}
+            size={20}
+            color="#fff"
+          />
+        </Pressable>
+
+        <Ionicons name="play-skip-forward" size={18} color="#fff" />
+      </View>
 
     <Slider
-        style={{width: "100%"}}
-        value={position}
-        minimumValue={0}
-        maximumValue={100}
-        onSlidingComplete={onSeek}
-        onValueChange={setPosition}
-        thumbSize={24}
-        trackHeight={6}
-        thumbStyle={{ backgroundColor: 'white', borderWidth: 2, borderColor: '#1DB954' }}
-        minimumTrackTintColor="#1DB954"
-        maximumTrackTintColor="#444"
+      value={position}
+      minimumValue={0}
+      maximumValue={duration}
+      onSlidingComplete={onSeek}
+      onValueChange={setPosition}
+      trackHeight={4}
+      thumbSize={0} // invisible thumb
+      minimumTrackTintColor="#fff"
+      maximumTrackTintColor="#ccc"
+      style={styles.slider}
     />
-
+{/* 
       <Text style={styles.time}>
         {formatTime(position)} / {formatTime(duration)}
-      </Text>
+      </Text> */}
 
-      <Pressable onPress={togglePlayPause} >
-        <Text>⏯️</Text>
-      </Pressable>
     </View>
   );
 }
@@ -90,22 +101,32 @@ function formatTime(ms) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
+  playerCard: {
+    backgroundColor: '#dcd6cd', // match your image background
+    borderRadius: 16,
+    paddingVertical: 10,
+    paddingHorizontal: 30,
     alignItems: 'center',
-    padding: 20,
+    justifyContent: 'center',
+    width: '100%',
+    alignSelf: 'center',
+    marginTop: 5
   },
-  title: {
-    fontSize: 24,
-    marginBottom: 20,
+  controlsRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    width: '60%',
+  },
+  playButton: {
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+    backgroundColor: '#a99f95',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   slider: {
     width: '100%',
-    height: 10,
-  },
-  time: {
-    marginVertical: 10,
-    fontSize: 16,
   },
 });
